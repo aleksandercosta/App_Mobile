@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horários de Ônibus</title>
+  <meta name="description" content="Consulte os horários de ônibus da Jotur e do Consórcio Fênix de forma rápida e fácil." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #FDFBFF;
+      --card-jotur: #EADDFF;
+      --card-jotur-active: #D0BCFF;
+      --border-jotur: rgba(208, 188, 255, 0.5);
+      --text-jotur: #21005D;
+      --badge-jotur: #21005D;
+
+      --card-fenix: #F3EDF7;
+      --card-fenix-active: #E8DEF8;
+      --border-fenix: #E8DEF8;
+      --text-fenix: #1D192B;
+      --badge-fenix: #49454F;
+
+      --text-main: #1C1B1F;
+      --text-muted: #49454F;
+      --text-subtle: #938F99;
+      --divider-color: #E7E0EC;
+      --primary: #6750A4;
+
+      --shadow-icon: 0 10px 15px -3px rgba(103, 80, 164, 0.2), 0 4px 6px -4px rgba(103, 80, 164, 0.1);
+      --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      --shadow-card-hover: 0 6px 12px -2px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 56px 24px 36px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 448px;
+      text-align: center;
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--primary);
+      border-radius: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: #ffffff;
+      box-shadow: var(--shadow-icon);
+    }
+
+    .header-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      letter-spacing: -0.025em;
+    }
+
+    p.description {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      padding: 0 16px;
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 24px;
+      padding: 22px 24px;
+      text-decoration: none;
+      box-shadow: var(--shadow-card);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 84px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .action-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Jotur Theme */
+    .btn-jotur {
+      background-color: var(--card-jotur);
+      border: 1px solid var(--border-jotur);
+      color: var(--text-jotur);
+    }
+
+    .btn-jotur:active {
+      background-color: var(--card-jotur-active);
+    }
+
+    .btn-jotur .badge-action {
+      background-color: var(--badge-jotur);
+    }
+
+    .btn-jotur .category-tag {
+      color: rgba(33, 0, 93, 0.6);
+    }
+
+    .btn-jotur h2 {
+      color: var(--text-jotur);
+    }
+
+    /* Fênix Theme */
+    .btn-fenix {
+      background-color: var(--card-fenix);
+      border: 1px solid var(--border-fenix);
+      color: var(--text-fenix);
+    }
+
+    .btn-fenix:active {
+      background-color: var(--card-fenix-active);
+    }
+
+    .btn-fenix .badge-action {
+      background-color: var(--badge-fenix);
+    }
+
+    .btn-fenix .category-tag {
+      color: rgba(29, 25, 43, 0.6);
+    }
+
+    .btn-fenix h2 {
+      color: var(--text-fenix);
+    }
+
+    .btn-left {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 2px;
+    }
+
+    .category-tag {
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+
+    .btn-left h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-action {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .action-btn:hover .badge-action {
+      transform: scale(1.05);
+    }
+
+    .badge-action svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    footer {
+      width: 100%;
+      max-width: 448px;
+      margin-top: 36px;
+    }
+
+    .footer-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .divider-line {
+      height: 1px;
+      flex: 1;
+      background-color: var(--divider-color);
+    }
+
+    .footer-text {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="header-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 11V6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v5c-1.66 0-3 1.34-3 3v4c0 .55.45 1 1 1h1v2c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2h6v2c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2h1c.55 0 1-.45 1-1v-4c0-1.66-1.34-3-3-3zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM18 10H6V6h12v4z"/>
+      </svg>
+    </div>
+
+    <h1>Horários de Ônibus</h1>
+    <p class="description">Consulte os horários de ônibus de forma rápida e fácil.</p>
+
+    <div class="buttons-wrapper">
+      <!-- Botão 1: Horários Jotur -->
+      <a
+        href="https://www.jotur.com.br/horarios/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-btn btn-jotur"
+        id="btn-jotur"
+      >
+        <div class="btn-left">
+          <span class="category-tag">Transporte Coletivo</span>
+          <h2>Horários Jotur</h2>
+        </div>
+        <div class="badge-action" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Botão 2: Horários Fênix -->
+      <a
+        href="https://www.consorciofenix.com.br/horarios"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-btn btn-fenix"
+        id="btn-fenix"
+      >
+        <div class="btn-left">
+          <span class="category-tag">Consórcio Municipal</span>
+          <h2>Horários Fênix</h2>
+        </div>
+        <div class="badge-action" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <div class="footer-divider">
+        <div class="divider-line"></div>
+        <p class="footer-text">Palhoça • Florianópolis</p>
+        <div class="divider-line"></div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Horários de Ônibus</string>
+    <string name="bus_schedules_title">Horários de Ônibus</string>
+    <string name="bus_schedules_subtitle">Consulte os horários de ônibus de forma rápida e fácil.</string>
+    <string name="btn_jotur">Horários Jotur</string>
+    <string name="btn_jotur_desc">Acessar jotur.com.br</string>
+    <string name="category_jotur">Transporte Coletivo</string>
+    <string name="btn_fenix">Horários Fênix</string>
+    <string name="btn_fenix_desc">Acessar consorciofenix.com.br</string>
+    <string name="category_fenix">Consórcio Municipal</string>
+    <string name="region_label">Palhoça • Florianópolis</string>
+</resources>
+
